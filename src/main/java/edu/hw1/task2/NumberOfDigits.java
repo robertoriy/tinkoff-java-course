@@ -1,11 +1,28 @@
 package edu.hw1.task2;
 
 public final class NumberOfDigits {
-    private NumberOfDigits() {
+    private static final int DIVIDER = 10;
 
+    private NumberOfDigits() {
     }
 
     public static int countDigits(int number) {
-        return 0;
+        int temp = Math.abs(number);
+        /*
+        Случай, которой ломает логику программы, так как
+        Math.abs(Integer.MIN_VALUE) == MIN_VALUE
+        используется MAX_VALUE, так как такое же количество цифр
+         */
+        if (temp == Integer.MIN_VALUE) {
+            temp = Integer.MAX_VALUE;
+        }
+        int count = 0;
+
+        do {
+            temp /= DIVIDER;
+            ++count;
+        } while (temp > 0);
+
+        return count;
     }
 }
