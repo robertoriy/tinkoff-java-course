@@ -9,9 +9,9 @@ public final class NumberOfDigits {
     public static int countDigits(int number) {
         int temp = Math.abs(number);
         /*
-        Случай, которой ломает логику программы, так как
-        Math.abs(Integer.MIN_VALUE) == MIN_VALUE
-        используется MAX_VALUE, так как такое же количество цифр
+        Случай, который ломает логику программы, так как
+        Math.abs(Integer.MIN_VALUE) == Integer.MIN_VALUE
+        используется Integer.MAX_VALUE, так как такое же количество цифр
          */
         if (temp == Integer.MIN_VALUE) {
             temp = Integer.MAX_VALUE;
