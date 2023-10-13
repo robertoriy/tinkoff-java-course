@@ -11,21 +11,16 @@ public final class SpecialPalindrome {
         }
         char[] digits = Integer.toString(number).toCharArray();
 
-        if (isPalindrome(digits)) {
-            return true;
-        }
-
-        while (digits.length > 2) {
-
-            if (digits.length % 2 != 0) {
-                return false;
-            }
-            digits = sumByPairs(digits);
-
+        do {
             if (isPalindrome(digits)) {
                 return true;
             }
-        }
+            if (digits.length % 2 != 0) {
+                break;
+            }
+            digits = sumByPairs(digits);
+        } while (digits.length > 1);
+
         return false;
     }
 
