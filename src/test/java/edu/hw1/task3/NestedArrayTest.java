@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 
 final class NestedArrayTest {
-
     @ParameterizedTest
     @DisplayName("Тест для вложенных массивов")
     @MethodSource("provideTestCasesForNestableScenarios")

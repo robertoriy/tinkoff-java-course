@@ -64,5 +64,4 @@ final class VideoLengthTest {
 
         assertThat(actual).isEqualTo(expected);
     }
-
 }

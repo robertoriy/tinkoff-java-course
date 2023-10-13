@@ -9,25 +9,22 @@ public final class Kaprekar {
         4444, 5555, 6666,
         7777, 8888, 9999
     };
-    private static final int MIN_VALID_VALUE = 1000;
-    private static final int MAX_VALID_VALUE = 10000;
+    private static final int MIN_VALID_VALUE = 1001;
+    private static final int MAX_VALID_VALUE = 9999;
 
     private Kaprekar() {
 
     }
 
     public static int countK(int number) {
-        if (!isInputCorrect(number)) {
-            return -1;
-        }
-        if (number == KAPREKAR_CONSTANT) {
-            return 0;
+        if (!isValidInput(number)) {
+            throw new IllegalArgumentException("Must be in range [1001, 9999] and not be repdigit");
         }
         return routine(number);
     }
 
-    private static boolean isInputCorrect(int number) {
-        return number > MIN_VALID_VALUE && number < MAX_VALID_VALUE && !isRepdigit(number);
+    private static boolean isValidInput(int number) {
+        return number >= MIN_VALID_VALUE && number <= MAX_VALID_VALUE && !isRepdigit(number);
     }
 
     private static boolean isRepdigit(int number) {
@@ -40,17 +37,16 @@ public final class Kaprekar {
     }
 
     private static int routine(int number) {
+        if (number == KAPREKAR_CONSTANT) {
+            return 0;
+        }
         char[] digits = prepareArgument(number);
 
         int min = Integer.parseInt(String.valueOf(digits));
         reverseOrder(digits);
         int max = Integer.parseInt(String.valueOf(digits));
 
-        if (max - min == KAPREKAR_CONSTANT) {
-            return 1;
-        } else {
-            return routine(max - min) + 1;
-        }
+        return routine(max - min) + 1;
     }
 
     private static char[] prepareArgument(int number) {
