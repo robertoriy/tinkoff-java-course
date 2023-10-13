@@ -6,12 +6,11 @@ public final class BrokenString {
 
     public static String fixString(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("Null input");
+            throw new IllegalArgumentException("Must not be null");
         }
         if (input.length() <= 1) {
             return input;
         }
-
         char[] charArray = input.toCharArray();
 
         for (int i = 0; i < charArray.length - 1; i += 2) {
