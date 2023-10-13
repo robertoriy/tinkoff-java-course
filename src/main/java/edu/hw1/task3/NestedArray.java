@@ -8,18 +8,17 @@ public final class NestedArray {
         if (!isValidArray(a) || !isValidArray(b)) {
             return false;
         }
+        MinMaxValues propertiesA = findMinAndMax(a);
+        MinMaxValues propertiesB = findMinAndMax(b);
 
-        ArrayProperties aContent = findMinAndMax(a);
-        ArrayProperties bContent = findMinAndMax(b);
-
-        return (aContent.min > bContent.min) && (aContent.max < bContent.max);
+        return (propertiesA.min() > propertiesB.min()) && (propertiesA.max() < propertiesB.max());
     }
 
     private static boolean isValidArray(int[] array) {
         return (array != null && array.length > 0);
     }
 
-    private static ArrayProperties findMinAndMax(int[] array) {
+    private static MinMaxValues findMinAndMax(int[] array) {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
 
@@ -31,10 +30,9 @@ public final class NestedArray {
                 max = value;
             }
         }
-        return new ArrayProperties(min, max);
+        return new MinMaxValues(min, max);
     }
 
-    record ArrayProperties(int min, int max) {
+    record MinMaxValues(int min, int max) {
     }
-
 }
