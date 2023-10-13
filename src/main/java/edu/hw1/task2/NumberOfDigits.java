@@ -7,13 +7,15 @@ public final class NumberOfDigits {
     }
 
     public static int countDigits(int number) {
-        int temp = Math.abs(number);
+        int temp;
         /*
-        Случай, который ломает логику программы, так как
-        Math.abs(Integer.MIN_VALUE) == Integer.MIN_VALUE
-        используется Integer.MAX_VALUE, так как такое же количество цифр
+        Для числа равного Integer.MIN_VALUE используется замена Integer.MAX_VALUE, так как
+        Math.absExact(Integer.MIN_VALUE) throws ArithmeticException
+        Данная замена не влияет на количество цифр
          */
-        if (temp == Integer.MIN_VALUE) {
+        try {
+            temp = Math.absExact(number);
+        } catch (ArithmeticException e) {
             temp = Integer.MAX_VALUE;
         }
         int count = 0;
