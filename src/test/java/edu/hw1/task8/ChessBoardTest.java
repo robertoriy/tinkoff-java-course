@@ -1,11 +1,12 @@
 package edu.hw1.task8;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 final class ChessBoardTest {
     @ParameterizedTest
@@ -27,6 +28,26 @@ final class ChessBoardTest {
                 {0, 1, 0, 0, 0, 1, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 1, 0, 0, 0, 0, 0, 1},
+                {0, 0, 0, 0, 1, 0, 0, 0}
+            }),
+            Arguments.of((Object) new int[][] {
+                {0, 1, 0, 1, 0, 1, 0, 1},
+                {1, 0, 1, 0, 1, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 0, 1},
+                {1, 0, 1, 0, 1, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 0, 1},
+                {1, 0, 1, 0, 1, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 0, 1},
+                {1, 0, 1, 0, 1, 0, 1, 0}
+            }),
+            Arguments.of((Object) new int[][] {
+                {0, 1, 0, 1, 0, 0, 0, 0},
+                {1, 0, 1, 0, 0, 0, 0, 0},
+                {0, 1, 0, 0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 1, 1, 1, 0},
+                {0, 1, 0, 0, 0, 1, 0, 0},
+                {1, 1, 1, 0, 0, 0, 0, 0},
+                {0, 1, 0, 0, 0, 1, 0, 1},
                 {0, 0, 0, 0, 1, 0, 0, 0}
             })
         );
@@ -62,7 +83,61 @@ final class ChessBoardTest {
                 {0, 0, 0, 0, 0, 1, 0, 0},
                 {0, 0, 0, 0, 0, 1, 0, 0},
                 {1, 0, 0, 0, 0, 0, 0, 0}
+            }),
+            Arguments.of((Object) new int[][] {
+                {0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 1, 0, 1},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 1},
+                {0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 1, 0, 0, 0, 1, 0, 1},
+                {1, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 1, 0, 0, 0, 1}
             })
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("Тест для некорректных входных данных")
+    @MethodSource("provideTestCasesForInvalidInput")
+    void testKnightBoardCaptureInvalidInputCase(int[][] board) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> ChessBoard.knightBoardCapture(board));
+    }
+
+    private static Stream<Arguments> provideTestCasesForInvalidInput() {
+        return Stream.of(
+            Arguments.of((Object) new int[][] {
+                {},
+                {0, 1, 0, 1, 0, 1, 0, 1},
+                {0, 0, 0, 0, 1, 0, 1, 0},
+                {0, 0, 1, 0},
+                {1, 0, 0, 0, 1, 0, 1, 0},
+                {},
+                {1, 0, 0, 0, 1, 0, 1, 0},
+                {0, 1, 0, 1}
+            }),
+            Arguments.of((Object) new int[][] {
+                {9, 5, 0, 0, 1, 0, 0, 0},
+                {9, 0, 0, 3, 0, 1, 0, 0},
+                {9, 0, 0, 1, 0, 0, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0},
+                {4, 0, 0, 0, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 1, 0, 0},
+                {9, 0, 0, 0, 0, 1, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0}
+            }),
+            Arguments.of((Object) new int[][] {
+                null,
+                {9, 0, 0, 3, 0, 1, 0, 0},
+                {9, 0, 0, 1, 0, 0, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0},
+                null,
+                {0, 0, 0, 0, 0, 1, 0, 0},
+                {9, 0, 0, 0, 0, 1, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0}
+            }),
+            Arguments.of((Object) null)
         );
     }
 }
