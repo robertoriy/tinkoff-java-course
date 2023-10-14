@@ -6,7 +6,11 @@ import org.apache.logging.log4j.Logger;
 public final class HelloWorld {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public void greeting() {
+    private HelloWorld() {
+
+    }
+
+    public static void greeting() {
         LOGGER.info("Привет, мир!");
     }
 }
