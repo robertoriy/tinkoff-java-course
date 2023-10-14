@@ -24,7 +24,7 @@ public final class Kaprekar {
     }
 
     private static boolean isValidInput(int number) {
-        return number >= MIN_VALID_VALUE && number <= MAX_VALID_VALUE && !isRepdigit(number);
+        return (number >= MIN_VALID_VALUE && number <= MAX_VALID_VALUE && !isRepdigit(number));
     }
 
     private static boolean isRepdigit(int number) {

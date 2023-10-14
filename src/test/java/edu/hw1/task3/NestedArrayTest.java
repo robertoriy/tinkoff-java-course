@@ -1,11 +1,12 @@
 package edu.hw1.task3;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import java.util.stream.Stream;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 final class NestedArrayTest {
     @ParameterizedTest
@@ -45,14 +46,13 @@ final class NestedArrayTest {
 
     @ParameterizedTest
     @DisplayName("Тест для некорректных входных данных")
-    @MethodSource("provideTestCasesForBadInputScenarios")
-    void testIsNestableCornerCase(int[] first, int[] second) {
-        boolean actual = NestedArray.isNestable(first, second);
-
-        assertThat(actual).isFalse();
+    @MethodSource("provideTestCasesForInvalidInput")
+    void testIsNestableInvalidInputCase(int[] first, int[] second) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> NestedArray.isNestable(first, second));
     }
 
-    private static Stream<Arguments> provideTestCasesForBadInputScenarios() {
+    private static Stream<Arguments> provideTestCasesForInvalidInput() {
         return Stream.of(
             Arguments.of(new int[] {}, new int[] {}),
             Arguments.of(new int[] {1, 2, 3, 4}, new int[] {}),

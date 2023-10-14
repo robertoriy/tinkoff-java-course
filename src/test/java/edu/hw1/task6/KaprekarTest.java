@@ -5,7 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 final class KaprekarTest {
     @ParameterizedTest
@@ -29,17 +29,15 @@ final class KaprekarTest {
     @DisplayName("Тест для чисел с одинаковыми цифрами")
     @ValueSource(ints = {1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999})
     void testCountKRepdigitCase(int number) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            Kaprekar.countK(number);
-        });
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> Kaprekar.countK(number));
     }
 
     @ParameterizedTest
     @DisplayName("Тест для некорректных входных данных")
     @ValueSource(ints = {-100, 0, 151, 999, 1000, 10000, 10001, 1561654})
-    void testCountKCornerCase(int number) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            Kaprekar.countK(number);
-        });
+    void testCountKInvalidInputCase(int number) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> Kaprekar.countK(number));
     }
 }

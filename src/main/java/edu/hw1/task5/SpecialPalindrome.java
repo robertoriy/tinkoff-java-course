@@ -7,7 +7,7 @@ public final class SpecialPalindrome {
 
     public static boolean isPalindromeDescendant(int number) {
         if (number < 0) {
-            return false;
+            throw new IllegalArgumentException("Number must be a non-negative integer");
         }
         char[] digits = Integer.toString(number).toCharArray();
 
@@ -44,5 +44,4 @@ public final class SpecialPalindrome {
         }
         return result.toString().toCharArray();
     }
-
 }

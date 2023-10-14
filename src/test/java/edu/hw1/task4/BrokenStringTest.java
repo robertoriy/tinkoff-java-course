@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 final class BrokenStringTest {
     @ParameterizedTest
@@ -34,9 +34,8 @@ final class BrokenStringTest {
 
     @Test
     @DisplayName("Тест для null входных данных")
-    void testFixStringBadInputCase() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BrokenString.fixString(null);
-        });
+    void testFixStringInvalidInputCase() {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> BrokenString.fixString(null));
     }
 }

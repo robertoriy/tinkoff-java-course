@@ -4,11 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 final class SpecialPalindromeTest {
     @ParameterizedTest
     @DisplayName("Тест для значений палиндромов или имеющих потомков палиндромов")
-    @ValueSource(ints = {0, 1, 121, 32_23, 11_21_12_30, 13_00_11_20, 23_33_60_14, 11, 52_61})
+    @ValueSource(ints = {0, 1, 121, 3223, 11_21_12_30, 13_00_11_20, 23_33_60_14, 11, 52_61})
     void testIsPalindromeDescendantTrueCase(int number) {
         boolean actual = SpecialPalindrome.isPalindromeDescendant(number);
 
@@ -27,9 +28,8 @@ final class SpecialPalindromeTest {
     @ParameterizedTest
     @DisplayName("Тест для некорректных входных значений")
     @ValueSource(ints = {-1, -121, -2165})
-    void testIsPalindromeDescendantBadInputCase(int number) {
-        boolean actual = SpecialPalindrome.isPalindromeDescendant(number);
-
-        assertThat(actual).isFalse();
+    void testIsPalindromeDescendantInvalidInputCase(int number) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> SpecialPalindrome.isPalindromeDescendant(number));
     }
 }

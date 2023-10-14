@@ -1,9 +1,9 @@
 package edu.hw1.task1;
 
-import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import static org.assertj.core.api.Assertions.assertThat;
 
 final class VideoLengthTest {
     @ParameterizedTest
@@ -54,12 +54,13 @@ final class VideoLengthTest {
     @ParameterizedTest
     @DisplayName("Тест для некорректных входных данных")
     @CsvSource({
+        "15:51:23, -1",
         "mm:ss, -1",
         "abc:de, -1",
         "wasdqwer, -1",
         ", -1"
     })
-    void testMinutesToSecondsBadInputCase(String time, int expected) {
+    void testMinutesToSecondsInvalidInputCase(String time, int expected) {
         int actual = VideoLength.minutesToSeconds(time);
 
         assertThat(actual).isEqualTo(expected);
