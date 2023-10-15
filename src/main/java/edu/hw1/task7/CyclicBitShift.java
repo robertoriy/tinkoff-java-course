@@ -4,7 +4,6 @@ public final class CyclicBitShift {
     private static final int RADIX = 2;
 
     private CyclicBitShift() {
-
     }
 
     public static int rotateLeft(int number, int shift) {

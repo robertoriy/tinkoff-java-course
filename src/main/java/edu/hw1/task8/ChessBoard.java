@@ -6,11 +6,10 @@ public final class ChessBoard {
     private static final int TWO_SQUARES = 2;
 
     private ChessBoard() {
-
     }
 
     public static boolean knightBoardCapture(int[][] board) {
-        if (!isValidBoard(board)) {
+        if (isInvalidBoard(board)) {
             throw new IllegalArgumentException("Board must be 8x8 and contain only 0/1 values");
         }
         for (int row = 0; row < BOARD_SIZE; row++) {
@@ -23,21 +22,21 @@ public final class ChessBoard {
         return true;
     }
 
-    private static boolean isValidBoard(int[][] board) {
+    private static boolean isInvalidBoard(int[][] board) {
         if (board == null || board.length != BOARD_SIZE) {
-            return false;
+            return true;
         }
         for (int[] row : board) {
             if (row == null || row.length != BOARD_SIZE) {
-                return false;
+                return true;
             }
             for (int value : row) {
                 if (value != 0 && value != 1) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     private static boolean canKnightCapture(int[][] board, int row, int column) {

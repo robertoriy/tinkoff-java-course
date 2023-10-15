@@ -7,11 +7,10 @@ public final class VideoLength {
     private static final int ERROR_RESPONSE = -1;
 
     private VideoLength() {
-
     }
 
     public static int minutesToSeconds(String time) {
-        if (!isValidInput(time)) {
+        if (isInvalidInput(time)) {
             return ERROR_RESPONSE;
         }
         String[] args = time.split(SEPARATOR);
@@ -28,7 +27,7 @@ public final class VideoLength {
         return totalSeconds;
     }
 
-    private static boolean isValidInput(String time) {
-        return (time != null && time.matches(TIME_PATTERN));
+    private static boolean isInvalidInput(String time) {
+        return (time == null || !time.matches(TIME_PATTERN));
     }
 }

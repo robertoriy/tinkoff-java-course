@@ -5,7 +5,7 @@ public final class NestedArray {
     }
 
     public static boolean isNestable(int[] a, int[] b) {
-        if (!isValidArray(a) || !isValidArray(b)) {
+        if (isInvalidArray(a) || isInvalidArray(b)) {
             throw new IllegalArgumentException("Arrays must be not empty");
         }
         ArrayProperties propertiesA = findMinAndMax(a);
@@ -14,8 +14,8 @@ public final class NestedArray {
         return (propertiesA.min() > propertiesB.min()) && (propertiesA.max() < propertiesB.max());
     }
 
-    private static boolean isValidArray(int[] array) {
-        return (array != null && array.length > 0);
+    private static boolean isInvalidArray(int[] array) {
+        return (array == null || array.length == 0);
     }
 
     private static ArrayProperties findMinAndMax(int[] array) {

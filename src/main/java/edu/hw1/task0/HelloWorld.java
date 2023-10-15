@@ -7,7 +7,6 @@ public final class HelloWorld {
     private static final Logger LOGGER = LogManager.getLogger();
 
     private HelloWorld() {
-
     }
 
     public static void greeting() {

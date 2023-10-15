@@ -13,18 +13,17 @@ public final class Kaprekar {
     private static final int MAX_VALID_VALUE = 9999;
 
     private Kaprekar() {
-
     }
 
     public static int countK(int number) {
-        if (!isValidInput(number)) {
+        if (isInvalidInput(number)) {
             throw new IllegalArgumentException("Must be in range [1001, 9999] and not be repdigit");
         }
         return routine(number);
     }
 
-    private static boolean isValidInput(int number) {
-        return (number >= MIN_VALID_VALUE && number <= MAX_VALID_VALUE && !isRepdigit(number));
+    private static boolean isInvalidInput(int number) {
+        return (number < MIN_VALID_VALUE || number > MAX_VALID_VALUE || isRepdigit(number));
     }
 
     private static boolean isRepdigit(int number) {
