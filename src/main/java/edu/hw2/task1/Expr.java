@@ -3,34 +3,38 @@ package edu.hw2.task1;
 public sealed interface Expr {
     double evaluate();
 
-    public record Constant(int number) implements Expr {
+    record Constant(double number) implements Expr {
         @Override
         public double evaluate() {
-            return 0;
+            return number;
         }
     }
-    public record Negate(Expr expression) implements Expr {
+
+    record Negate(Expr expression) implements Expr {
         @Override
         public double evaluate() {
-            return 0;
+            return -expression.evaluate();
         }
     }
-    public record Exponent(Expr base, int exponent) implements Expr {
+
+    record Addition(Expr first, Expr second) implements Expr {
         @Override
         public double evaluate() {
-            return 0;
+            return first.evaluate() + second.evaluate();
         }
     }
-    public record Addition(Expr first, Expr second) implements Expr {
+
+    record Multiplication(Expr first, Expr second) implements Expr {
         @Override
         public double evaluate() {
-            return 0;
+            return first.evaluate() * second.evaluate();
         }
     }
-    public record Multiplication(Expr first, Expr second) implements Expr {
+
+    record Exponent(Expr base, int power) implements Expr {
         @Override
         public double evaluate() {
-            return 0;
+            return Math.pow(base.evaluate(), power);
         }
     }
 }
