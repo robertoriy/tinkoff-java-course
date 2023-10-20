@@ -40,7 +40,7 @@ final class ExprTest {
             "-751.516, 751.516",
             "26.21, -26.21"
         })
-        void testEvaluateNegateConstantCase(double argument, double expected) {
+        void testEvaluateNegateCase(double argument, double expected) {
             Expr.Negate negate = new Expr.Negate(new Expr.Constant(argument));
 
             double actual = negate.evaluate();
@@ -59,7 +59,7 @@ final class ExprTest {
             "13.56, 0, 13.56",
             "5.5, 4.5, 10",
         })
-        void testEvaluateAdditionConstantCase(double first, double second, double expected) {
+        void testEvaluateAdditionCase(double first, double second, double expected) {
             Expr.Addition addition = new Expr.Addition(
                 new Expr.Constant(first),
                 new Expr.Constant(second)
