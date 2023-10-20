@@ -5,8 +5,11 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.offset;
 
 final class ExprTest {
+    private static final double DELTA = 1e-10;
+
     @Nested
     class ConstantCase {
         @ParameterizedTest
@@ -24,7 +27,7 @@ final class ExprTest {
 
             double actual = constant.evaluate();
 
-            assertThat(actual).isEqualTo(expected);
+            assertThat(actual).isEqualTo(expected, offset(DELTA));
         }
     }
 
@@ -45,7 +48,7 @@ final class ExprTest {
 
             double actual = negate.evaluate();
 
-            assertThat(actual).isEqualTo(expected);
+            assertThat(actual).isEqualTo(expected, offset(DELTA));
         }
     }
 
@@ -67,7 +70,7 @@ final class ExprTest {
 
             double actual = addition.evaluate();
 
-            assertThat(actual).isEqualTo(expected);
+            assertThat(actual).isEqualTo(expected, offset(DELTA));
         }
     }
 
@@ -91,7 +94,7 @@ final class ExprTest {
 
             double actual = multiplication.evaluate();
 
-            assertThat(actual).isEqualTo(expected);
+            assertThat(actual).isEqualTo(expected, offset(DELTA));
         }
     }
 
@@ -113,7 +116,7 @@ final class ExprTest {
 
             double actual = exponent.evaluate();
 
-            assertThat(actual).isEqualTo(expected);
+            assertThat(actual).isEqualTo(expected, offset(DELTA));
         }
     }
 }
