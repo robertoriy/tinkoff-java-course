@@ -1,6 +1,6 @@
 package edu.hw2.task2;
 
-public class Rectangle {
+public sealed class Rectangle permits Square {
     private final double height;
     private final double width;
 
@@ -10,30 +10,22 @@ public class Rectangle {
     }
 
     public Rectangle(double height, double width) {
-        validateNonNegativeValue(height);
-        validateNonNegativeValue(width);
-
+        if (height < 0 || width < 0) {
+            throw new IllegalArgumentException("Length values must be non-negative");
+        }
         this.height = height;
         this.width = width;
     }
 
-    Rectangle setWidth(double width) {
-        validateNonNegativeValue(width);
+    public Rectangle setWidth(double width) {
         return new Rectangle(this.height, width);
     }
 
-    Rectangle setHeight(double height) {
-        validateNonNegativeValue(height);
+    public Rectangle setHeight(double height) {
         return new Rectangle(height, this.width);
     }
 
-    double area() {
+    public double area() {
         return width * height;
-    }
-
-    private void validateNonNegativeValue(double length) {
-        if (length < 0) {
-            throw new IllegalArgumentException("Length value must be non-negative");
-        }
     }
 }
