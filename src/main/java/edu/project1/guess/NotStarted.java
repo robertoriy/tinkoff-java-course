@@ -5,9 +5,7 @@ public record NotStarted(String hint, int currentMisses, int maxAllowedMisses) i
     public String message() {
         return String.format(
             "Better guess! Your hint is: %s. Mistake %d out of %d",
-            hint(),
-            currentMisses(),
-            maxAllowedMisses()
+            hint(), currentMisses(), maxAllowedMisses()
         );
     }
 }

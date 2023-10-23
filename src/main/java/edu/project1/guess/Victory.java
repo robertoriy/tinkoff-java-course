@@ -5,9 +5,7 @@ public record Victory(String hint, int currentMisses, int maxAllowedMisses) impl
     public String message() {
         return String.format(
             "You won! Answer is: %s. Mistake %d out of %d",
-            hint(),
-            currentMisses(),
-            maxAllowedMisses()
+            hint(), currentMisses(), maxAllowedMisses()
         );
     }
 }

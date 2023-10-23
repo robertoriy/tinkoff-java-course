@@ -5,9 +5,7 @@ public record Miss(String hint, int currentMisses, int maxAllowedMisses) impleme
     public String message() {
         return String.format(
             "You wrong! Your hint: %s. Mistake %d out of %d",
-            hint(),
-            currentMisses(),
-            maxAllowedMisses()
+            hint(), currentMisses(), maxAllowedMisses()
         );
     }
 }

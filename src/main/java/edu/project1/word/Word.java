@@ -22,7 +22,7 @@ public class Word {
         return letterIndexes.get(letter);
     }
 
-    public boolean contain(char c) {
+    public boolean contains(char c) {
         return letterIndexes.containsKey(c);
     }
 

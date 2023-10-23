@@ -11,10 +11,10 @@ import java.util.List;
 
 public class Session {
     private static final int DEFAULT_MAX_ALLOWED_MISSES = 5;
+    private static final char GUESS_SYMBOL = '*';
     private final Word answer;
     private final char[] hint;
     private final int maxAllowedMisses;
-
     private int currentMisses = 0;
 
     public Session(Word answer) {
@@ -25,11 +25,11 @@ public class Session {
         this.answer = answer;
         this.maxAllowedMisses = maxAllowedMisses;
         hint = new char[answer.getLength()];
-        Arrays.fill(hint, '*');
+        Arrays.fill(hint, GUESS_SYMBOL);
     }
 
     public GuessState guess(char guess) {
-        if (answer.contain(guess)) {
+        if (answer.contains(guess)) {
             return hitCase(guess);
         } else {
             return missCase();

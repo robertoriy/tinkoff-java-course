@@ -31,8 +31,8 @@ final class WordTest {
     @ParameterizedTest
     @DisplayName("Тест на наличие буквы в слове")
     @MethodSource("provideWordsAndLetters")
-    void testContain(Word word, char c, boolean expected) {
-        boolean actual = word.contain(c);
+    void testContains(Word word, char c, boolean expected) {
+        boolean actual = word.contains(c);
 
         assertThat(actual).isEqualTo(expected);
     }

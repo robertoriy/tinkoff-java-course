@@ -5,9 +5,7 @@ public record Defeat(String hint, int currentMisses, int maxAllowedMisses) imple
     public String message() {
         return String.format(
             "You lost! Your hint is: %s. Mistake %d out of %d",
-            hint(),
-            currentMisses(),
-            maxAllowedMisses()
+            hint(), currentMisses(), maxAllowedMisses()
         );
     }
 }

@@ -36,6 +36,26 @@ final class SessionTest {
     }
 
     @ParameterizedTest
+    @DisplayName("Тест на открытие нужной буквы в подсказке")
+    @MethodSource("provideHitCase")
+    void testHitGuess(Word word, char guess, String expectedHint) {
+        Session session = new Session(word);
+
+        session.guess(guess);
+        String actualHint = session.getCurrentHint();
+
+        assertThat(actualHint).isEqualTo(expectedHint);
+    }
+
+    public static Stream<Arguments> provideHitCase() {
+        return Stream.of(
+            Arguments.of(new Word("hello"), 'l', "**ll*"),
+            Arguments.of(new Word("aabcaad"), 'a', "aa**aa*"),
+            Arguments.of(new Word("hello"), 'g', "*****")
+        );
+    }
+
+    @ParameterizedTest
     @DisplayName("Тест на гарантированный проигрыш после заданного количества ошибок")
     @MethodSource("provideDefeatCase")
     void testDefeat(Word word, char guess, int maxAllowedMisses) {
@@ -54,26 +74,6 @@ final class SessionTest {
             Arguments.of(new Word("hello"), 'f', 4),
             Arguments.of(new Word("aaaaa"), 'b', 2),
             Arguments.of(new Word("first"), 'a', 5)
-        );
-    }
-
-    @ParameterizedTest
-    @DisplayName("Тест на открытие нужной буквы в подсказке")
-    @MethodSource("provideHitCase")
-    void testHitGuess(Word word, char guess, String expectedHint) {
-        Session session = new Session(word);
-
-        session.guess(guess);
-        String actualHint = session.getCurrentHint();
-
-        assertThat(actualHint).isEqualTo(expectedHint);
-    }
-
-    public static Stream<Arguments> provideHitCase() {
-        return Stream.of(
-            Arguments.of(new Word("hello"), 'l', "**ll*"),
-            Arguments.of(new Word("aabcaad"), 'a', "aa**aa*"),
-            Arguments.of(new Word("hello"), 'g', "*****")
         );
     }
 
