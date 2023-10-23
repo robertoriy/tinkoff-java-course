@@ -9,7 +9,7 @@ public class HandwrittenDictionary implements Dictionary {
 
     public HandwrittenDictionary(String[] words) {
         if (isInputInvalid(words)) {
-            throw new IllegalArgumentException("Bad input: strings must be nont empty and not null");
+            throw new IllegalArgumentException("Bad input: words must be not null and have length > 2");
         }
         this.words = words;
     }

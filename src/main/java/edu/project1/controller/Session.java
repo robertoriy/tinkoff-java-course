@@ -29,19 +29,11 @@ public class Session {
     }
 
     public GuessState guess(char guess) {
-        if (!answer.contain(guess)) {
-            currentMisses++;
-            if (currentMisses == maxAllowedMisses) {
-                return new Defeat(getCurrentHint(), currentMisses, maxAllowedMisses);
-            }
-            return new Miss(getCurrentHint(), currentMisses, maxAllowedMisses);
+        if (answer.contain(guess)) {
+            return hitCase(guess);
+        } else {
+            return missCase();
         }
-
-        updateHint(guess);
-        if (hasUnresolvedLetters()) {
-            return new Hit(getCurrentHint(), currentMisses, maxAllowedMisses);
-        }
-        return new Victory(getCurrentHint(), currentMisses, maxAllowedMisses);
     }
 
     public GuessState giveUp() {
@@ -54,6 +46,22 @@ public class Session {
 
     public String getCurrentHint() {
         return String.valueOf(hint);
+    }
+
+    private GuessState hitCase(char guess) {
+        updateHint(guess);
+        if (hasUnresolvedLetters()) {
+            return new Hit(getCurrentHint(), currentMisses, maxAllowedMisses);
+        }
+        return new Victory(getCurrentHint(), currentMisses, maxAllowedMisses);
+    }
+
+    private GuessState missCase() {
+        currentMisses++;
+        if (currentMisses == maxAllowedMisses) {
+            return new Defeat(getCurrentHint(), currentMisses, maxAllowedMisses);
+        }
+        return new Miss(getCurrentHint(), currentMisses, maxAllowedMisses);
     }
 
     private void updateHint(char guess) {
