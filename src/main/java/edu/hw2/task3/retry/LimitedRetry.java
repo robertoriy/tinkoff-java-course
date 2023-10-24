@@ -1,6 +1,6 @@
 package edu.hw2.task3.retry;
 
-import edu.hw2.task3.exception.LimitOfExecutionAttemptsExceeded;
+import edu.hw2.task3.exception.LimitOfExecutionAttemptsExceededException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,7 +22,9 @@ public final class LimitedRetry implements Retry {
             } catch (Exception e) {
                 LOGGER.info("The attempt failed");
                 if (i == maxAttempts) {
-                    throw new LimitOfExecutionAttemptsExceeded("Limit of command execution attempts exceeded", e);
+                    throw new LimitOfExecutionAttemptsExceededException(
+                        "Limit of command execution attempts exceeded", e
+                    );
                 }
                 LOGGER.info("The request is repeated...");
             }

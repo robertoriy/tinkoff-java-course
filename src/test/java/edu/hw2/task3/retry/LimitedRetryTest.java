@@ -1,6 +1,6 @@
 package edu.hw2.task3.retry;
 
-import edu.hw2.task3.exception.LimitOfExecutionAttemptsExceeded;
+import edu.hw2.task3.exception.LimitOfExecutionAttemptsExceededException;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -47,6 +47,6 @@ final class LimitedRetryTest {
         }
 
         assertThat(actualList).hasSize(expected);
-        assertThat(actualException).isInstanceOf(LimitOfExecutionAttemptsExceeded.class);
+        assertThat(actualException).isInstanceOf(LimitOfExecutionAttemptsExceededException.class);
     }
 }

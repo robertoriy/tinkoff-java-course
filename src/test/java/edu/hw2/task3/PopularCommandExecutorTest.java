@@ -1,7 +1,7 @@
 package edu.hw2.task3;
 
 import edu.hw2.task3.exception.ConnectionException;
-import edu.hw2.task3.exception.LimitOfExecutionAttemptsExceeded;
+import edu.hw2.task3.exception.LimitOfExecutionAttemptsExceededException;
 import edu.hw2.task3.manager.DefaultConnectionManager;
 import edu.hw2.task3.manager.FaultyConnectionManager;
 import org.junit.jupiter.api.DisplayName;
@@ -26,7 +26,7 @@ final class PopularCommandExecutorTest {
         var executor = new PopularCommandExecutor(new FaultyConnectionManager(1), 10);
 
         assertThatThrownBy(() -> executor.tryExecute(command))
-            .isInstanceOf(LimitOfExecutionAttemptsExceeded.class)
+            .isInstanceOf(LimitOfExecutionAttemptsExceededException.class)
             .hasMessage("Limit of command execution attempts exceeded")
             .hasCauseInstanceOf(ConnectionException.class)
             .hasRootCauseMessage("Failed to execute the command - " + command);
