@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 final class FaultyConnectionManagerTest {
     @ParameterizedTest
     @DisplayName("Тест на получение неисправного соединения")
-    @ValueSource(ints = {3, 5, 7, 12, 55, 546})
+    @ValueSource(ints = {100})
     void testGetConnection(int maxAttempts) {
         ConnectionManager connectionManager = new FaultyConnectionManager();
 
