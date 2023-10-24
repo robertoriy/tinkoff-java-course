@@ -1,6 +1,5 @@
 package edu.hw2.task3.connection;
 
-import edu.hw2.task3.exception.ConnectionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +14,7 @@ public final class StableConnection implements Connection {
     @Override
     public void execute(String command) {
         if (isClosed()) {
-            throw new ConnectionException("Executing a command after closing the connection");
+            throw new IllegalStateException("Executing a command after closing the connection");
         }
         LOGGER.info("Executing the command - {}", command);
         LOGGER.info("Command executed successfully");
@@ -33,12 +32,11 @@ public final class StableConnection implements Connection {
             isOpen = false;
             LOGGER.info("The connection successfully closed");
         } else {
-            throw new ConnectionException("The connection is already closed");
+            throw new IllegalStateException("The connection is already closed");
         }
     }
 
     private boolean isClosed() {
         return !isOpen;
     }
-
 }
