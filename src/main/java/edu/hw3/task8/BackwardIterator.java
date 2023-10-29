@@ -9,6 +9,9 @@ public class BackwardIterator<E> implements Iterator<E> {
     private int cursor;
 
     BackwardIterator(List<E> list) {
+        if (list == null) {
+            throw new IllegalArgumentException("List must be not null");
+        }
         this.list = list;
         cursor = list.size() - 1;
     }

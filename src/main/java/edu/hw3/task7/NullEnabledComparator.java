@@ -2,14 +2,7 @@ package edu.hw3.task7;
 
 import java.util.Comparator;
 
-public class NullEnabledComparator<T> implements Comparator<T> {
-    private final Comparator<T> comparator;
-
-    @SuppressWarnings("unchecked")
-    public NullEnabledComparator(Comparator<? super T> comparator) {
-        this.comparator = (Comparator<T>) comparator;
-    }
-
+public class NullEnabledComparator<T extends Comparable<T>> implements Comparator<T> {
     @Override
     public int compare(T a, T b) {
         if (a == null && b == null) {
@@ -19,7 +12,7 @@ public class NullEnabledComparator<T> implements Comparator<T> {
         } else if (b == null) {
             return 1;
         } else {
-            return comparator.compare(a, b);
+            return a.compareTo(b);
         }
     }
 }
