@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 final class ContactTest {
     @ParameterizedTest
-    @DisplayName("Тест на корректную работу")
+    @DisplayName("Тест на корректную сортировку по фамилии, если отсутствует - используется имя")
     @MethodSource("provideContacts")
     void testSortingByLastName(Contact[] actual, Order order, Contact[] expected) {
         Arrays.sort(actual, Contact.getComparator(order));
