@@ -1,9 +1,10 @@
 package edu.hw3.task4;
 
+import java.util.NavigableMap;
 import java.util.TreeMap;
 
 public final class RomanNumerals {
-    private static final TreeMap<Integer, String> ROMAN_VALUES = new TreeMap<>();
+    private static final NavigableMap<Integer, String> ROMAN_VALUES = new TreeMap<>();
     private static final int LIMIT_OF_ROMAN_NUMERALS = 4000;
 
     static {
