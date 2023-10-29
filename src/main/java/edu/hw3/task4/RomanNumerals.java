@@ -7,22 +7,22 @@ public final class RomanNumerals {
     private static final int LIMIT_OF_ROMAN_NUMERALS = 4000;
 
     static {
-        ROMAN_VALUES.put(1, "I");
+        ROMAN_VALUES.put(Numeral.ONE.arabic(), Numeral.ONE.roman());
 
-        ROMAN_VALUES.put(4, "IV");
-        ROMAN_VALUES.put(5, "V");
-        ROMAN_VALUES.put(9, "IX");
-        ROMAN_VALUES.put(10, "X");
+        ROMAN_VALUES.put(Numeral.FOUR.arabic(), Numeral.FOUR.roman());
+        ROMAN_VALUES.put(Numeral.FIVE.arabic(), Numeral.FIVE.roman());
+        ROMAN_VALUES.put(Numeral.NINE.arabic(), Numeral.NINE.roman());
+        ROMAN_VALUES.put(Numeral.TEN.arabic(), Numeral.TEN.roman());
 
-        ROMAN_VALUES.put(40, "XL");
-        ROMAN_VALUES.put(50, "L");
-        ROMAN_VALUES.put(90, "XC");
-        ROMAN_VALUES.put(100, "C");
+        ROMAN_VALUES.put(Numeral.FORTY.arabic(), Numeral.FORTY.roman());
+        ROMAN_VALUES.put(Numeral.FIFTY.arabic(), Numeral.FIFTY.roman());
+        ROMAN_VALUES.put(Numeral.NINETY.arabic(), Numeral.NINETY.roman());
+        ROMAN_VALUES.put(Numeral.ONE_HUNDRED.arabic(), Numeral.ONE_HUNDRED.roman());
 
-        ROMAN_VALUES.put(400, "CD");
-        ROMAN_VALUES.put(500, "D");
-        ROMAN_VALUES.put(900, "CM");
-        ROMAN_VALUES.put(1000, "M");
+        ROMAN_VALUES.put(Numeral.FOUR_HUNDRED.arabic(), Numeral.FOUR_HUNDRED.roman());
+        ROMAN_VALUES.put(Numeral.FIVE_HUNDRED.arabic(), Numeral.FIVE_HUNDRED.roman());
+        ROMAN_VALUES.put(Numeral.NINE_HUNDRED.arabic(), Numeral.NINE_HUNDRED.roman());
+        ROMAN_VALUES.put(Numeral.THOUSAND.arabic(), Numeral.THOUSAND.roman());
     }
 
     private RomanNumerals() {
