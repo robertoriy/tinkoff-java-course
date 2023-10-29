@@ -2,31 +2,28 @@ package edu.hw3.task8;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 public class BackwardIterator<E> implements Iterator<E> {
-    private final List<E> list;
-    private int cursor;
+    private final ListIterator<E> cursor;
 
     BackwardIterator(List<E> list) {
         if (list == null) {
             throw new IllegalArgumentException("List must be not null");
         }
-        this.list = list;
-        cursor = list.size() - 1;
+        cursor = list.listIterator(list.size());
     }
 
     @Override
     public boolean hasNext() {
-        return cursor >= 0;
+        return cursor.hasPrevious();
     }
 
     @Override
     public E next() {
         if (hasNext()) {
-            E next = list.get(cursor);
-            cursor--;
-            return next;
+            return cursor.previous();
         }
         throw new NoSuchElementException();
     }

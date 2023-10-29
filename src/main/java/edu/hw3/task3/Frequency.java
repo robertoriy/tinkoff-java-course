@@ -10,7 +10,7 @@ public final class Frequency {
 
     public static <T> Map<T, Integer> compute(List<T> elements) {
         if (elements == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("List must be not null");
         }
         Map<T, Integer> elementFrequency = new HashMap<>();
 

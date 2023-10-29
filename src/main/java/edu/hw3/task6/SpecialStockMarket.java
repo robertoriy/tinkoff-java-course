@@ -1,5 +1,6 @@
 package edu.hw3.task6;
 
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -8,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 public class SpecialStockMarket implements StockMarket {
     private static final Logger LOGGER = LogManager.getLogger();
-    private final Queue<Stock> queue = new PriorityQueue<>();
+    private final Queue<Stock> queue = new PriorityQueue<>(Comparator.reverseOrder());
 
     @Override
     public void add(Stock stock) {
