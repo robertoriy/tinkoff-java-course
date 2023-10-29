@@ -11,14 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 final class ContactTest {
     @ParameterizedTest
     @DisplayName("Тест на корректную работу")
-    @MethodSource("provideNamesAndContacts")
+    @MethodSource("provideContacts")
     void testSortingByLastName(Contact[] actual, Order order, Contact[] expected) {
         Arrays.sort(actual, Contact.getComparator(order));
 
         assertThat(actual).isEqualTo(expected);
     }
 
-    private static Stream<Arguments> provideNamesAndContacts() {
+    private static Stream<Arguments> provideContacts() {
         return Stream.of(
             Arguments.of(
                 new Contact[] {

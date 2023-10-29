@@ -11,7 +11,7 @@ final class ContactListTest {
     @ParameterizedTest
     @DisplayName("Тест на корректную работу")
     @MethodSource("provideNamesAndContacts")
-    void testParseContacts(String[] inputNames, Order order, Contact[] expected) {
+    void testSortContacts(String[] inputNames, Order order, Contact[] expected) {
         Contact[] actual = ContactList.sortContacts(inputNames, order);
 
         assertThat(actual).isEqualTo(expected);
@@ -53,7 +53,7 @@ final class ContactListTest {
     @ParameterizedTest
     @DisplayName("Тест на возврат пустого массива из-за некорректного ввода")
     @MethodSource("provideInvalidInputCase")
-    void testClusterizeInvalidInputCase(String[] inputNames) {
+    void testSortContactsInputCase(String[] inputNames) {
         Contact[] actual = ContactList.sortContacts(inputNames, Order.ASCENDING);
 
         assertThat(actual).isEqualTo(new Contact[0]);
