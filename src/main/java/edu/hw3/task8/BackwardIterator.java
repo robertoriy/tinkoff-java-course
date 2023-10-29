@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 public class BackwardIterator<E> implements Iterator<E> {
     private final ListIterator<E> cursor;
 
-    BackwardIterator(List<E> list) {
+    public BackwardIterator(List<E> list) {
         if (list == null) {
             throw new IllegalArgumentException("List must be not null");
         }
