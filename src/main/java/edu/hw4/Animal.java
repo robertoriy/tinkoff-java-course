@@ -10,7 +10,17 @@ public record Animal(
     boolean bites
 ) {
     enum Type {
-        CAT, DOG, BIRD, FISH, SPIDER
+        CAT(4), DOG(4), BIRD(2), FISH(0), SPIDER(8);
+
+        private final int numberOfPaws;
+
+        Type(int numberOfPaws) {
+            this.numberOfPaws = numberOfPaws;
+        }
+
+        public int getNumberOfPaws() {
+            return numberOfPaws;
+        }
     }
 
     enum Sex {
@@ -18,11 +28,6 @@ public record Animal(
     }
 
     public int paws() {
-        return switch (type) {
-            case CAT, DOG -> 4;
-            case BIRD -> 2;
-            case FISH -> 0;
-            case SPIDER -> 8;
-        };
+        return type.getNumberOfPaws();
     }
 }
