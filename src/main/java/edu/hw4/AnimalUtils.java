@@ -1,24 +1,37 @@
 package edu.hw4;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public final class AnimalUtils {
     private AnimalUtils() {
     }
 
     public static List<Animal> sortByAscendingHeight(List<Animal> animals) {
-        return null;
+        return animals.stream()
+            .sorted(Comparator.comparing(Animal::height))
+            .toList();
     }
 
-    public static List<Animal> sortByDescendingWeight(List<Animal> animals) {
-        return null;
+    public static List<Animal> sortByDescendingWeightAndLimit(List<Animal> animals, int limiter) {
+        return animals.stream()
+            .sorted(Comparator.comparing(Animal::weight, Comparator.reverseOrder()))
+            .limit(limiter)
+            .toList();
     }
 
     public static Map<Animal.Type, Integer> countByType(List<Animal> animals) {
-        return null;
+        return animals.stream()
+            .collect(
+                Collectors.groupingBy(
+                    Animal::type,
+                    Collectors.summingInt(animal -> 1)
+                )
+            );
     }
 
     public static Animal longestName(List<Animal> animals) {
@@ -77,7 +90,6 @@ public final class AnimalUtils {
         return null;
     }
 
-
     public static Animal heaviestFish(List<List<Animal>> listsAnimals) {
         return null;
     }
@@ -90,6 +102,6 @@ public final class AnimalUtils {
         return null;
     }
 
-
-    record ValidationError(String name) {}
+    record ValidationError(String name) {
+    }
 }
