@@ -9,6 +9,14 @@ public record Animal(
     int weight,
     boolean bites
 ) {
+    public static String[] getFieldNames() {
+        return new String[] {"name", "type", "sex", "age", "height", "weight", "bites"};
+    }
+
+    public int paws() {
+        return type.getNumberOfPaws();
+    }
+
     enum Type {
         CAT(4), DOG(4), BIRD(2), FISH(0), SPIDER(8);
 
@@ -25,9 +33,5 @@ public record Animal(
 
     enum Sex {
         M, F
-    }
-
-    public int paws() {
-        return type.getNumberOfPaws();
     }
 }
