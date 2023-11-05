@@ -57,7 +57,7 @@ public class PrimGenerator implements Generator {
         visited[coordinate.row()][coordinate.column()] = true;
         maze.setCellType(coordinate.row(), coordinate.column(), Cell.Type.PASSAGE);
 
-        if (coordinate.row() != maze.getHeight() - 2 && coordinate.column() != maze.getWidth() - 2) {
+        if (coordinate.row() != maze.getHeight() - 1 && coordinate.column() != maze.getWidth() - 1) {
             List<Cell> neighbours = getNeighbours(maze, coordinate.row(), coordinate.column());
             walls.addAll(neighbours);
         }
