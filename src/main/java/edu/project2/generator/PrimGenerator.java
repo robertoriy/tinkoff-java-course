@@ -8,6 +8,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class PrimGenerator implements Generator {
+    private static final int NO_STEP = 0;
+    private static final int STEP = 1;
+
     @Override
     public Maze generate(int height, int width) {
         Maze maze = new Maze(height, width);
@@ -39,7 +42,12 @@ public class PrimGenerator implements Generator {
     }
 
     private List<Cell> getNeighbours(Maze maze, int row, int column) {
-        final int[][] neighboursCoordinates = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        final int[][] neighboursCoordinates = {
+            {STEP, NO_STEP},
+            {-STEP, NO_STEP},
+            {NO_STEP, STEP},
+            {NO_STEP, -STEP}
+        };
         List<Cell> neighbours = new ArrayList<>();
 
         for (int[] neighbour : neighboursCoordinates) {
