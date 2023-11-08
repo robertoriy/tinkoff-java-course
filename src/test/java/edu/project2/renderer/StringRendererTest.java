@@ -61,7 +61,7 @@ final class StringRendererTest {
                         ⬛️⬜️⬜️⬛️
                         ⬜️⬛️⬜️⬜️
                         ⬜️⬜️⬜️⬛️
-                        """
+                        """.replace("\n", System.lineSeparator())
                 )
             );
         }
@@ -118,7 +118,7 @@ final class StringRendererTest {
                         ⬛️🟣🟣⬛️
                         ⬜️⬛️🟣⬜️
                         🟣🟣🟣⬛️
-                        """
+                        """.replace("\n", System.lineSeparator())
                 )
             );
         }
