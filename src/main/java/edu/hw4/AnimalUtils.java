@@ -43,7 +43,7 @@ public final class AnimalUtils {
     public static Animal longestName(List<Animal> animals) {
         return animals.stream()
             .max(Comparator.comparingInt(animal -> animal.name().length()))
-            .orElseThrow();
+            .orElse(null);
     }
 
     // Задача 5 - Каких животных больше: самцов или самок -> Sex
@@ -58,7 +58,7 @@ public final class AnimalUtils {
             .stream()
             .max(Comparator.comparingLong(Map.Entry::getValue))
             .map(Map.Entry::getKey)
-            .orElseThrow();
+            .orElse(null);
     }
 
     // Задача 6 - Самое тяжелое животное каждого вида -> Map<Animal.Type, Animal>
@@ -78,7 +78,7 @@ public final class AnimalUtils {
             .sorted(Comparator.comparing(Animal::age, Comparator.reverseOrder()))
             .skip(index - 1)
             .findFirst()
-            .orElseThrow();
+            .orElse(null);
     }
 
     // Задача 8 - Самое тяжелое животное среди животных ниже k см -> Optional<Animal>
@@ -174,7 +174,7 @@ public final class AnimalUtils {
             .flatMap(List::stream)
             .filter(animal -> animal.type() == Animal.Type.FISH)
             .max(Comparator.comparing(Animal::weight))
-            .orElseThrow();
+            .orElse(null);
     }
 
     // Задача 19 - Животные, в записях о которых есть ошибки:
