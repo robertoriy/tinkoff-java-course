@@ -12,66 +12,87 @@ import edu.project2.view.ConsolePrinter;
 import edu.project2.view.Printer;
 import java.util.List;
 import java.util.Scanner;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public final class MazeApplication implements Runnable {
-    private static final Logger LOGGER = LogManager.getLogger();
     private final Generator generator = new PrimGenerator();
     private final Solver solver = new DepthFirstSearchSolver();
     private final Renderer renderer = new StringRenderer();
     private final Printer printer = new ConsolePrinter();
     private final Scanner scanner = new Scanner(System.in);
-    private Maze maze;
-    private List<Coordinate> path;
 
     @Override
     public void run() {
-        scanHeightWidthAndFillMaze();
+        Maze maze = generateMaze();
 
-        LOGGER.info("Your maze!");
+        printer.print("Your maze!");
         printer.print(renderer.render(maze));
 
-        scanCoordinatesAndFindPath();
+        List<Coordinate> path = findPath(maze);
 
-        LOGGER.info("Your path!");
+        printer.print("Your path!");
         printer.print(renderer.render(maze, path));
 
         scanner.close();
     }
 
-    private void scanHeightWidthAndFillMaze() {
-        while (true) {
-            LOGGER.info("Enter height and width <height width>");
-            int height = scanner.nextInt();
-            int width = scanner.nextInt();
-            LOGGER.info("You entered: {} {}", height, width);
+    private Maze generateMaze() {
+        Maze maze = null;
+        boolean notScanned = true;
+        while (notScanned) {
+            Dimensions dimensions = scanDimensions();
             try {
-                maze = generator.generate(height, width);
+                maze = generator.generate(dimensions.height, dimensions.width);
+                notScanned = false;
             } catch (IllegalArgumentException e) {
-                LOGGER.info("Invalid height/width. Try again!");
-                continue;
+                printer.print("Invalid height/width. Try again!");
             }
-            break;
         }
+        return maze;
     }
 
-    private void scanCoordinatesAndFindPath() {
-        while (true) {
-            LOGGER.info("Enter start and end coordinates <x1 y1 x2 y2>");
-            int x1 = scanner.nextInt();
-            int y1 = scanner.nextInt();
-            int x2 = scanner.nextInt();
-            int y2 = scanner.nextInt();
-            LOGGER.info("You entered: {} {} {} {}", x1, y1, x2, y2);
-
+    private List<Coordinate> findPath(Maze maze) {
+        List<Coordinate> path = null;
+        boolean notScanned = true;
+        while (notScanned) {
             try {
-                path = solver.solve(maze, new Coordinate(x1, y1), new Coordinate(x2, y2));
+                Coordinate start = scanCoordinate("start");
+                Coordinate end = scanCoordinate("end");
+
+                path = solver.solve(maze, start, end);
+                notScanned = false;
             } catch (IllegalArgumentException e) {
-                LOGGER.info("Invalid coordinates. Try again!");
-                continue;
+                printer.print("Invalid coordinates. Try again!");
             }
-            break;
         }
+        return path;
+    }
+
+    private Dimensions scanDimensions() {
+        printer.print("Enter height and width <height width>");
+        int height = scanner.nextInt();
+        int width = scanner.nextInt();
+        printer.print(getMessageWithScannedValues(height, width));
+
+        return new Dimensions(height, width);
+    }
+
+    private Coordinate scanCoordinate(String coordinateType) {
+        printer.print("Enter " + coordinateType + " coordinate <row column>");
+        int row = scanner.nextInt();
+        int column = scanner.nextInt();
+        printer.print(getMessageWithScannedValues(row, column));
+
+        return new Coordinate(row, column);
+    }
+
+    private String getMessageWithScannedValues(int... scanned) {
+        StringBuilder message = new StringBuilder("You entered:");
+        for (int scannedValue : scanned) {
+            message.append(" ").append(scannedValue);
+        }
+        return message.toString();
+    }
+
+    private record Dimensions(int height, int width) {
     }
 }
