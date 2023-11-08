@@ -103,9 +103,9 @@ public final class AnimalUtils {
     }
 
     // Задача 11 - Список животных, которые могут укусить (bites == true) и рост которых превышает K -> List<Animal>
-    public static List<Animal> canBiteAndAbove(List<Animal> animals, int height) {
+    public static List<Animal> canBiteAndAbove(List<Animal> animals, int lowerHeightLimit) {
         return animals.stream()
-            .filter(animal -> animal.bites() && animal.height() > height)
+            .filter(animal -> animal.bites() && animal.height() > lowerHeightLimit)
             .toList();
     }
 
