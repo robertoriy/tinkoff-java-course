@@ -27,39 +27,39 @@ final class CombinedDateParserTest {
         return Stream.of(
             Arguments.of(
                 "2020-10-10",
-                LocalDate.of(2020, Month.OCTOBER, 10)
+                Optional.of(LocalDate.of(2020, Month.OCTOBER, 10))
             ),
             Arguments.of(
                 "2020-12-2",
-                LocalDate.of(2020, Month.DECEMBER, 2)
+                Optional.of(LocalDate.of(2020, Month.DECEMBER, 2))
             ),
             Arguments.of(
                 "1/3/1976",
-                LocalDate.of(1976, Month.MARCH, 1)
+                Optional.of(LocalDate.of(1976, Month.MARCH, 1))
             ),
             Arguments.of(
                 "1/3/20",
-                LocalDate.of(2020, Month.MARCH, 1)
+                Optional.of(LocalDate.of(2020, Month.MARCH, 1))
             ),
             Arguments.of(
                 "tomorrow",
-                LocalDate.now().plusDays(1)
+                Optional.of(LocalDate.now().plusDays(1))
             ),
             Arguments.of(
                 "today",
-                LocalDate.now()
+                Optional.of(LocalDate.now())
             ),
             Arguments.of(
                 "yesterday",
-                LocalDate.now().minusDays(1)
+                Optional.of(LocalDate.now().minusDays(1))
             ),
             Arguments.of(
                 "1 day ago",
-                LocalDate.now().minusDays(1)
+                Optional.of(LocalDate.now().minusDays(1))
             ),
             Arguments.of(
                 "2234 days ago",
-                LocalDate.now().minusDays(2234)
+                Optional.of(LocalDate.now().minusDays(2234))
             )
         );
     }
@@ -67,8 +67,9 @@ final class CombinedDateParserTest {
     @ParameterizedTest
     @DisplayName("Тест для строк несоответствующих правилу")
     @CsvSource({
-        "2020-18-20",
+        "2020-180-20",
         "15:10:2013",
+        "155/1f/20213",
         "А123ВЕ7777",
         "fsdgsdfg"
     })
