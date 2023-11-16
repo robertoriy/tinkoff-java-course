@@ -4,6 +4,8 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public final class Subsequences {
+    private static final String ANY_CHARACTER_ZERO_OR_MORE_TIMES = ".*";
+
     private Subsequences() {
     }
 
@@ -17,9 +19,9 @@ public final class Subsequences {
     private static String createPattern(String subsequence) {
         StringBuilder patternBuilder = new StringBuilder();
         for (char symbol : subsequence.toCharArray()) {
-            patternBuilder.append(".*").append(Pattern.quote(String.valueOf(symbol)));
+            patternBuilder.append(ANY_CHARACTER_ZERO_OR_MORE_TIMES).append(Pattern.quote(String.valueOf(symbol)));
         }
-        patternBuilder.append(".*");
+        patternBuilder.append(ANY_CHARACTER_ZERO_OR_MORE_TIMES);
         return patternBuilder.toString();
     }
 }
