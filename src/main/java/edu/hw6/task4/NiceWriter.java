@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.zip.Adler32;
 import java.util.zip.CheckedOutputStream;
 import org.apache.logging.log4j.LogManager;
@@ -28,6 +29,9 @@ public final class NiceWriter {
     }
 
     public static void println(Path path, String content) {
+        Objects.requireNonNull(path);
+        Objects.requireNonNull(content);
+
         createPathIfNotExist(path);
 
         try (OutputStream fos = Files.newOutputStream(path, APPEND);
