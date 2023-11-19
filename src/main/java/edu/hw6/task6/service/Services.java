@@ -3,7 +3,8 @@ package edu.hw6.task6.service;
 import java.util.Map;
 
 public final class Services {
-    @SuppressWarnings("checkstyle:MultipleStringLiterals")
+
+    @SuppressWarnings({"checkstyle:LineLength", "checkstyle:MultipleStringLiterals"})
     private static final Map<Integer, String> SERVICES_MAP = Map.ofEntries(
         Map.entry(80, "HTTP (HyperText Transfer Protocol)"),
         Map.entry(21, "FTP (File Transfer Protocol)"),
