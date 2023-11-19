@@ -11,12 +11,12 @@ public final class ConsolePortPrinter implements PortPrinter {
     public void print(List<PortInfo> portsInfo) {
         System.out.println(HEADER);
         for (PortInfo portInfo : portsInfo) {
-            System.out.println(CONTENT.formatted(
-                portInfo.port(),
+            System.out.printf(
+                (CONTENT) + "%n", portInfo.port(),
                 portInfo.protocol(),
                 portInfo.portStatus(),
-                portInfo.service() == null ? "N/A" : portInfo.service()
-            ));
+                portInfo.service() == null ? "-" : portInfo.service()
+            );
         }
     }
 }
