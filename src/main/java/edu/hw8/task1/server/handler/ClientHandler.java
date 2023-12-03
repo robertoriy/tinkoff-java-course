@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.io.UncheckedIOException;
 import java.net.Socket;
 
-public final class ClientHandler implements Handler, AutoCloseable {
+public final class ClientHandler implements Handler {
     private final Socket client;
 
     private ClientHandler(Socket client) {

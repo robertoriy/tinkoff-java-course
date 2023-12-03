@@ -1,5 +1,7 @@
 package edu.hw8.task1.server.handler;
 
-public interface Handler {
+public interface Handler extends AutoCloseable {
     void handle();
+
+    void close();
 }
