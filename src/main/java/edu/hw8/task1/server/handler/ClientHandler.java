@@ -20,6 +20,7 @@ public final class ClientHandler implements Handler {
         return new ClientHandler(client);
     }
 
+    @SuppressWarnings("checkstyle:RegexpSinglelineJava")
     @Override
     public void handle() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -27,11 +28,11 @@ public final class ClientHandler implements Handler {
 
             String name = reader.readLine();
             String topic = reader.readLine();
-            print(Messages.USER.formatted(name, topic));
+            System.out.print(Messages.USER.formatted(name, topic));
 
             String response = QuoteDictionary.getQuote(topic);
             writer.println(response);
-            print(Messages.SERVER.formatted(response));
+            System.out.print(Messages.SERVER.formatted(response));
 
         } catch (IOException exception) {
             throw new UncheckedIOException(exception);
@@ -45,10 +46,5 @@ public final class ClientHandler implements Handler {
         } catch (IOException exception) {
             throw new UncheckedIOException(exception);
         }
-    }
-
-    @SuppressWarnings("checkstyle:RegexpSinglelineJava")
-    private void print(String line) {
-        System.out.print(line);
     }
 }

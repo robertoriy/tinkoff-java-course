@@ -16,7 +16,6 @@ public final class FibonacciApplication {
                 int current = i;
                 threadPool.execute(() -> results.set(current, compute(values.get(current))));
             }
-            threadPool.shutdown();
         }
         return results;
     }

@@ -28,6 +28,7 @@ public final class QuotesClient implements Client {
         return new QuotesClient(name, DEFAULT_SERVER_PORT);
     }
 
+    @SuppressWarnings("checkstyle:RegexpSinglelineJava")
     @Override
     public String request(String topic) {
         try (Socket socket = new Socket(InetAddress.getByName(HOST_NAME), port);
@@ -36,19 +37,14 @@ public final class QuotesClient implements Client {
 
             writer.println(name);
             writer.println(topic);
-            print(Messages.USER.formatted(name, topic));
+            System.out.print(Messages.USER.formatted(name, topic));
 
             String response = reader.readLine();
-            print(Messages.SERVER.formatted(response));
+            System.out.print(Messages.SERVER.formatted(response));
 
             return response;
         } catch (IOException exception) {
             throw new UncheckedIOException(exception);
         }
-    }
-
-    @SuppressWarnings("checkstyle:RegexpSinglelineJava")
-    private void print(String line) {
-        System.out.print(line);
     }
 }

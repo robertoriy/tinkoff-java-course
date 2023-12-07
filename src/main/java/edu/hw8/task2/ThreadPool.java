@@ -5,8 +5,6 @@ public interface ThreadPool extends AutoCloseable {
 
     void execute(Runnable runnable);
 
-    void shutdown();
-
     @Override
     void close();
 }

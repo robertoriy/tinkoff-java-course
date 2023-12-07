@@ -52,6 +52,9 @@ public final class FixedThreadPool implements ThreadPool {
 
     @Override
     public void execute(Runnable task) {
+        if (!isRunning.get()) {
+            throw new IllegalStateException("It is not possible to add new task");
+        }
         try {
             LOGGER.info(LogMessages.ADDING_TASK, Thread.currentThread().threadId());
             tasks.put(task);
@@ -62,12 +65,9 @@ public final class FixedThreadPool implements ThreadPool {
         }
     }
 
-    public void shutdown() {
-        isRunning.set(false);
-    }
-
     @Override
     public void close() {
+        isRunning.set(false);
         for (Worker worker : workers) {
             try {
                 worker.join();

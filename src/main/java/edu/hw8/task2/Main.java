@@ -55,7 +55,6 @@ public final class Main {
                     throw new RuntimeException(e);
                 }
             });
-            threadPool.shutdown();
         }
 
     }
