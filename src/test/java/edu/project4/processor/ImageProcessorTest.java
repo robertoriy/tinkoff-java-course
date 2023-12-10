@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
-class ImageProcessorTest {
+final class ImageProcessorTest {
     private static Stream<Arguments> provideProcessor() {
         return Stream.of(
             Arguments.of(new GammaCorrection())
