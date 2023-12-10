@@ -44,4 +44,14 @@ final class FractalImageTest {
         assertThatExceptionOfType(NoSuchElementException.class)
             .isThrownBy(() -> fractalImage.pixel(20, 20));
     }
+
+    @Test
+    @DisplayName("Создание картинки нужной размерности")
+    void validData() {
+        FractalImage fractalImage = FractalImage.create(20, 20);
+
+        Pixel[] actual = fractalImage.data();
+
+        assertThat(actual).hasSize(20 * 20);
+    }
 }
