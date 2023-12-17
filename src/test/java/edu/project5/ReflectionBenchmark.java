@@ -26,7 +26,7 @@ public class ReflectionBenchmark {
     private static final int WARMUP_FORKS = 1;
     private static final int WARMUP_ITERATIONS = 1;
     private static final int WARMUP_TIME = 5;
-    private static final int MEASUREMENT_TIME = 120;
+    private static final int MEASUREMENT_TIME = 5;
     private static final int MEASUREMENT_ITERATIONS = 1;
     private Student student;
     private Method method;
