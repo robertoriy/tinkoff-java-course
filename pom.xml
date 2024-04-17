@@ -49,6 +49,7 @@
 
         <bytebuddy.version>1.14.8</bytebuddy.version>
         <asm.version>9.6</asm.version>
+
     </properties>
 
     <dependencyManagement>
